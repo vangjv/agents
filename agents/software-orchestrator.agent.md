@@ -2,7 +2,6 @@
 name: software-orchestrator
 description: Central orchestrator for a software development pipeline. Receives work items (features, bugfixes, refactors, hotfixes), maintains a state ledger, dispatches specialist subagents (Planner, Coder, Reviewer, Test, Integrator, Debug, Docs) through a structured state machine, synthesizes their results, and drives each work item to completion. Never writes code, reviews code, or runs tests itself — every action is delegated.
 argument-hint: A work item to process — describe the feature, bugfix, refactor, or hotfix. Include any relevant context such as repo, files, requirements, or priority.
-tools: ['agent', 'todo']
 ---
 
 # Software Development Orchestrator
@@ -70,7 +69,7 @@ Maintain a mental ledger for every active work item. Track:
 | **harness_selection** | claude_code, copilot, codex |
 | **collected_results** | planner_output, coder_outputs[], reviewer_results[], test_results[], debug_diagnoses[], integration_result, docs_result |
 
-Use the todo list to make ledger state visible to the user at all times.
+Use a structured progress summary to make ledger state visible to the user at all times.
 
 ---
 
@@ -218,7 +217,7 @@ Log the Docs result when it arrives. Docs failures are logged but never escalate
 
 ## Phase 7 — COMPLETE
 
-1. Update the todo list to reflect completion.
+1. Update progress tracking to reflect completion.
 2. Produce a final summary:
 
 ```markdown
@@ -337,4 +336,4 @@ If a subagent returns incomplete or incorrect output:
 - **Specificity is quality.** A prompt tailored to the exact task, file, interface, and tech stack will outperform a generic template every time.
 - **Fail fast, re-compose precisely.** Do not retry the same prompt. Each retry must include a diagnosis and tighter constraints.
 - **Never block on ambiguity.** If the plan is ambiguous, dispatch a research subagent to resolve it — do not ask the user.
-- **Progress is visible.** Use the todo list to show the user which phase you are in and what has been dispatched, completed, or is pending.
+- **Progress is visible.** Show the user which phase you are in and what has been dispatched, completed, or is pending.
