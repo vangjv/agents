@@ -53,7 +53,7 @@ Return a structured Markdown report with these sections:
 - tests_failed: <count>
 
 ## Diagnostics
-- <failure summary with exact error messages and stack traces for each failing test>
+- <for each failing test: failure message, stack trace, and relevant context — omit this section if all tests pass>
 
 ## Coverage Gaps
 - <areas not covered by the new tests and why, only if relevant>
